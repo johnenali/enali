@@ -1,0 +1,60 @@
+# --.--import numpy as np--.--
+# list存储对象的引用，array模块的array对象不支持多维数组。
+# NumPy提供两种对象：ndarry, ufunc。其中ndarry存储单一数据类型的多维数组。ufunc则是能对数组进制处理的函数
+{{{
+    L=[1, 2, 3]
+    L*2 -> [1, 2, 3, 1, 2, 3]
+}}}
+# numpy的数据类型：np.int4 ~ np.int64, np.float16 ~ np.float64.......
+# 创建数组
+{{{
+    L=np.array(list/tuple[,dtype=np.float])
+    L=np.arange(i,j,k) ->k为步长
+    L=np.linspace(i,j,k) ->等差数列，k为个数
+    L=np.logspace(i,j,k [,base=2][,endpoint=True]) ->等比数列，k为个数,base设定基数，endpoint设定是否包含终值
+    zeros(), ones(), empty()参数为形状和类型
+    zeros_like(), ones_like(), empty_like()参数为ndarry对象
+    frombuffer(), fromstring(), fromfile()
+    注：fromstring('abcdefg', dtype=np.int8/np.int16/np.int32) ->int8时，一字符一数字，int16时，两字符一数字，int32时，三字符一数字
+    fromfunction(func, shape, **kwargs) ->以所创建的数组中元素的位置为函数参数。根据坐标维数，参数可为(i), (i,j), (i,j,k)...
+
+    L.shape=n,k,...(为－1即自调整)
+    a=L.reshape(tuple)->a为L的视图
+    
+    ndarry对象属性：
+        shape, dtype, 
+}}}
+# np.typeDic为numpy数据类型及其字符串形式的字典, 可进制类型查询。
+{{{
+    支持片取，L[i:j:k]，结果为L的视图
+    支持整数列表，整数数组，布尔数组等下标存取方法,将创建新数组
+    如L[[2, 3, 1, 0, 4, 5]]且下标数组可多维，结果拥有同样的形状
+    创建分片：slice(None, None, 2), 或np.s_[::2, 2:]
+    
+    对于多维数组，每个维度的下标均支持上述存取方法。若下标个数小于维数，则剩余各维对应下标均为':'。
+    多维数组：[[1, 2, 3], [2, 3, 4]]从最外层的'[]'往内计算,第一层有2个元素，第二层有3个元素。形状(2, 3)
+}}}
+# 结构数组：
+{{{
+    结构类型：1, persontype = np.dtype(
+                    { 'names':['f1', 'f2', 'f3'], 'formats':['d', 'i', 'f'], offset=[0, 25, 32]},
+                    align:True)
+                #参数为字典，键'names'定义变量名，键'formats'定义变量类型,align定义内存对齐方式。'd'等为字符串形式的的类型, offset为字节偏移量，和3相同。
+            
+              2, persontype = np.dtype(
+                    [('f1', 's', (2,3)), 
+                     ('f2', 'i'), 
+                     ('', 'f')])
+                #参数为列表，其中元素为元组，元组元素为变量名和类型,若类型为数组时，第三个元素定义形状。
+                
+              3, persontype = np.dtype(
+                    {'f1':('s', 0, (2, 3)),
+                     'f2':('i', 32),
+                     'f3':('f', 36)})
+                #参数为字典，键为变量名，值为元组，定义类型，第二个元素为该字段的字节偏移量，可查询相应字符串对应的numpy类型。第三个参数为若类型为数组时的形状
+                #可定义内存地址不连续的字段
+                
+             a = np.array([("zhang", 32, 43.2)], dtype=persontype)
+    
+    a.tostring(), a.tofile()将数组以二进制方式转换成字符串或写入文件。
+}}}

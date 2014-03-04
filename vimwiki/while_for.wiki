@@ -1,0 +1,43 @@
+# 因为所有对象本质都是真或假，python中，直接测试对象（if X:),而不是和空值比较(if X != '':)更为简单。
+# while循环:
+{{{ 
+    while <test>:
+        <statements1>
+        if <test2>:break
+        if <test3>:continue
+    else:
+        <statements2>
+        }}}
+# for循环:#可以遍历任何有序的序列对象内的元素。
+{{{
+    for <target> in <object>:
+        <statements1>
+        if <test>:break
+        if <test>:continue
+    else:
+        <statements2>
+        }}}
+# 循环else块：只有当循环正常离开时才会执行（也就是说没有碰到break语句).捕捉循环的另一条出路，而不通过设定和检查标志位或条件。
+# python不允许赋值这类语句出现在应该是表达式出现的场合。<test>均为表达式而非语句。
+# 3.0:允许在可以使用表达式的任何地方使用...来省略代码：def func1():...
+# 文件扫描：
+{{{
+    for line in open('test.txt'):
+        print(line, end=',')
+}}}
+# for循环一般比while计数器循环运行更快。
+# range:内置函数，返回一系列连续增加的整数，可作为for中的索引.
+# range([start, ] stop [, step])不包括stop。
+# zip:内置函数，返回并行元素的元组的列表，可用于在for中内遍历数个序列。
+# 可接受任何可迭代的对象，包括文件。多个参数，长度不等时以最短为准截断元组。
+{{{
+    for i in range(3):
+        print(i, 'python')
+    
+    s = 'abcdefghijk'
+    for c in S[::2]:print(c, end=' ')
+
+    [ x+1 for x in L]
+
+    [c*i for (i,c) in enumerate(S)]
+}}}

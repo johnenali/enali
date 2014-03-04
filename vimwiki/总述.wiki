@@ -1,0 +1,87 @@
+# 程序由模块构成；模块包含语句；语句包含表达式；表达式建立并处理对象。
+# python:内置函数，对象方法，操作符
+----
+| 赋值                    | 创建引用值 | a,b,c='good','bad','ugly'    |
+| 调用                    | 执行函数   | log.write("spam,ham")        |
+| if/elif/else            | 选择       | if "python" in text:         |
+|                         |            | print(text)                  |
+| while/else              | 循环       | while X > Y:                 |
+|                         |            | print('hello')               |
+| for/else                | 序列迭代   | for x in mylist:             |
+|                         |            | print(x)                     |
+| pass                    | 空占位符   |                              |
+| break                   | 循环退出   |                              |
+| continue                | 循环继续   |                              |
+| def                     | 函数和方法 | def f(a,b,c=1,*d):           |
+|                         |            | return a+b+c+d[0]            |
+| return                  | 返回       |                              |
+| yield                   | 生成器函数 | def gen(n):                  |
+|                         |            | for i in n:yield i*2         |
+| global                  | 命名空间   | x='old'                      |
+|                         |            | def function():              |
+|                         |            | global x,y; x='new'          |
+| nonlocal                | 命名空间   | def outer():                 |
+|                         |            | x='old'                      |
+|                         |            | def function():              |
+|                         |            | nonlocal x;x='new'           |
+| import                  | 模块访问   | import sys                   |
+| from                    | 属性访问   | from sys import stdin        |
+| class                   | 创建对象   | class Subclass(Superclass):  |
+|                         |            | staticData=[]                |
+|                         |            | def method(self):pass        |
+| try/except/finally/else | 捕捉异常   | try:                         |
+|                         |            | action()                     |
+|                         |            | except:                      |
+|                         |            | print ('action error')       |
+| raise                   | 触发异常   | raise EndSearch(location)    |
+| assert                  | 调试检查   | assert X>Y, 'X too small'    |
+| with/as                 | 环境管理器 | with open('data') as myfile: |
+|                         |            | process(myfile)              |
+| del                     | 删除引用   | del data[k]                  |
+|                         |            | del data[i:j]                |
+|                         |            | del obj.attr                 |
+|                         |            | del variable                 |
+----
+# reply = input('Enter text:') #内置函数，打印可选的字符串参数作为提示，返回用户输入。
+赋值：
+----
+| spam = 'spam'            | 基本形式       |
+| spam, ham='yum', 'YUM'   | 元组赋值运算   |
+| [spam,ham]=['yum','YUM'] | 列表赋值运算   |
+| a,b,c,d='spam'           | 序列赋值运算   |
+| a,*b='spam'              | 扩展的序列解包 |
+| spam=ham='lunch'         | 多目标赋值运算 |
+| spams += 42              | 增强赋值运算   |
+| ((a,b),c) = ('sp','am')  | 嵌套元组赋值   |
+----
+# red, green, blue = range(3) #内置函数，产生一系列整数给一组变量。
+# L=[1,2,3,4]
+  while L: #在循环中把序列分割为开头和剩余两部分
+      front, L=L[0], L[1:] / front, *L = L
+      print(front, L)
+# L=[1,2]; L+=[3,4]; L=L+[3,4]#不同：'+='隐含原处赋值；'+'则新建对象赋值。
+
+保留字：
+True/False/None and/not/or class/def if/elif/else global/nonlocal try/except/finally/raise break/continue/pass for/while lambda/yield assert in from/import/as is return 
+{{{
+_x:不会被from module import *语句导入
+_x_:系统定义的变量名，对解释器有特殊意义
+__x:类的本地变量
+类名称首字母大写，模块变量名首字母小写，驼峰命名。
+}}}
+
+# 打印操作：
+    - 2.6：打印是语句，有自己的特定语法
+    - 3.0：打印是内置函数，用关键字参数表示特定模式
+        print([object,...][,sep=' '][,end='\n'][,file=sys.stdout])
+----
+| 2.6                  | 3.0                   |
+| print x,y            | print(x,y)            |
+| print x,y,           | print(x,y,sep=',')    |
+| print >> afile, x, y | print(x,y,file=afile) |
+----
+# 输出流：
+    print(x,y) <=>
+    import sys; sys.stdout.write(str(x) + str(y) + '\n')
+重定向：sys.stdout = open('log.txt','a')
+sys.stdin/stdout/stderr

@@ -1,0 +1,19 @@
+if <test1>:
+    <statements1>
+elif <test2>:
+    <statements2>
+else:
+    <statements3>
+
+# 在python中，多路分支是写成一系列的if/elif测试，或者对字典进制索引运算或搜索列表。因为字典和列表可在运行时创建，有时会比硬编码的if逻辑更有灵活性。
+# choice='ham'
+  print({'spam':1.25,'ham':1.99,'eggs':0.99,'bacon':1.10}[choice])#实现类switch操作。
+# 数字0，空对象，None被认作假。
+    - 比较和相等测试会递归地应用在数据结构中。
+    - 比较和相等测试会返回True或False
+# 布尔and和or运算符会返回真或假的操作对象
+    - and:由左至右计算操作数，并且返回第一个为假的对象。
+    - or:由左至右计算操作数，并且返回第一个为真的对象。
+# A = Y if X else Z #X为真，则A=Y,为假，则A＝Z
+# X ＝ A or B or C or None＃把X设为A，B，C中第一个非空对象，若皆空，则设为None。
+

@@ -1,0 +1,37 @@
+[[ Learning Python ]]
+= 类型和运算 =
+    # [[ 数字number ]]
+    # [[ 字符串string ]]
+    # [[ 列表list ]]
+    # [[ 字典dict ]]
+    # [[ 元组tuple ]]
+    # [[ 文件file ]]
+    # [[ 类型总述 ]]
+= 语句和语法 =
+    # [[总述]]
+    # [[ if ]]
+    # [[while_for]]
+    # [[ 迭代器和解析1 ]]
+    # [[ 文档 ]]
+= 函数def =
+    # [[ 基础 ]]
+    # [[ 作用域 ]]
+    # [[ 参数 ]]
+    # [[ 高级 ]]
+    # [[ 迭代和解析2 ]]
+= 模块module =
+    # [[ 模块 ]]
+= 类和oop =
+    # [[ 类 ]]
+= 异常和工具 =
+= 科学计算 =
+    # [[ numpy ]]
+    # [[ scipy ]]
+    # [[ sympy ]]
+    # [[ matplotlib ]]
+    # [[ traits ]]
+    # [[ traitsUI ]]
+    # [[ chaco ]]
+    # [[ TVTK ]]
+    # [[ Mayavi ]]
+    # [[ OpenCV ]]

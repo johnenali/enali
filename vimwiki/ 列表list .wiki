@@ -1,0 +1,26 @@
+= 特性features =
+# 任意对象的有序集合
+# 通过偏移读取
+# 可变长度、异构以及任意嵌套
+# 可变序列
+# 对象引用数组
+- 对列表在列表末尾处的偏移赋值是非法的。
+- 不支持集合操作
+= 常量和操作 =
+# L=[] L=[0,1,2,3] L=['abc', ['def', 'gui']]嵌套 L=list('spam') L=list(range(-4,4))
+# L[i] L[i][j] L[i:j] L[i:j:k]=[]删除 L[i]=1索引赋值 L[i:j]=[4,5,6]分片赋值
+# 分片赋值：可理解为先删除再插入，则赋值长度与分片长度可不相等。
+# len(L)
+# L1+L2 L*3返回新列表
+# for x in L: print(x) L=[x**2 for x in range(5)]列表解析
+# 3 in L成员测试
+# L.append(4)将单项加至末端，原地修改->L[len(L):]=[X]后插 L[:0]=[X]前插
+ L.sort(['name=value'])参数key给出单个参数的函数，reverse为True/False定升降。
+ 两者原处修改，返回none
+# 内置函数:sorted(L, key=str.lower, reverse=True)
+# L.extend([5, 6, 7])将多项加至末端 L.pop([index])删除index单项,默认末端 L.remove(2)值删除 del L[i:j] del L[k]原处删除
+# L.insert(I,X)
+# L.index(1)
+# L.Count(X)
+# L.reverse()原地反转
+# list(map(ord, 'spam')) -> 2.7map直接返回list，3.2返回map对象，list类型转换

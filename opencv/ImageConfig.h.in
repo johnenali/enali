@@ -1,0 +1,2 @@
+#define NavImage_VERSION_MAJOR @{NavImage_VERSION_MAJOR@
+#define NavImage_VERSION_MINOR @{NavImage_VERSION_MINOR@

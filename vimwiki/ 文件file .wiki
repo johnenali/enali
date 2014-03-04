@@ -1,0 +1,31 @@
+= 操作 =
+# output = open(r'C:\spam', 'w')'a'为在尾部追加内容；'b'为二进制处理（关闭行末转换和3.0的unicode编码；'+'可读可写；'r'为可读，默认可省。第三个参数控制输出缓存：0为输出无缓存。
+# aString = input.read()读入整个文件进字符串 # aString = input.read(N)从当前位置读入N个字符 # sString = input.readline()读入下一行（包括\n） # aList = input.readlines()读入进字符串列表
+# output.write(aString) # output.writelines(aList)
+# output.close()
+# output.flush()把输出缓冲区刷到硬盘但不关闭文件
+# anyFile.seek(N)置文件读取标记至偏移量N处
+# for line in open('data'): use line文件迭代器
+# open('f.txt',encoding='latin-1)
+# open('f.bin','rb')3.0的二进制byte文件
+= 注意 =
+# 文件的读写内容均为字符串，不是字符串应转换。
+# 文件的空行含有换行符，不空。
+# 3.0:文本：把内容表示为常规的str字符串，自动执行unicode编码和解码，默认执行行末转换；二进制文件：把内容表示为一个特殊的bytes字符串类型，允许程序不修改地访问文件内容。以文本(unicode)模式打开二进制数据文件可能会失败
+# 内置函数eval把字符串当作可执行代码。可从文件读取python对象如列表和字典.
+# 文件上下文管理： 允许把文件处理代码包装到逻辑层中确保退出后可自动关闭文件。
+     with open(r'test.txt') as myfile:
+                    for line in myfile:
+                        ...use line...
+= 模块 =
+# pickle从文件存取python对象
+    以'rb'打开
+    pickle.dump(obj, file)
+    pickle.load(file)
+# struct构造并解析打包的二进制数据
+    以'wb'打开
+    struct.pack()
+    struct.unpack()
+= More =
+其它类似文件工具：
+    标准流，os模块中的描述文件，sockets,pipes和FIFO, 通过键存取的文件，shell命令流。

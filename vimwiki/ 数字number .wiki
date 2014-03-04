@@ -1,0 +1,81 @@
+# 整数
+    例子：0o177八进制； 0x9ff十六进制； 0b101010二进制; a, b = 1, 2
+    函数：bit_length返回二进制表示整数时的位数
+          hex(I), oct(I), bin(I) I为十进制整数
+          int(str, base)将字符串转为特定进制数
+    改变：2.6:整数（32位） 长整数（无穷精度,尾部加l） 3.0:整数
+# 浮点数
+    例子：1. , .5 , 1.0 , 0.5,  3.14e-10科学计数； 
+    函数：as_integer_ratio()返回浮点数的整数比值元组
+    陷阱：浮点数因为硬件限制，无法精确表示一些值，如 *0.1+0.1+0.1-0.3 != 0*
+# 复数
+    例子：1 + 3j, 0j
+# 固定精度的十进制数 
+    创建：from decimal import Decimal
+        Decimal('1.44')
+        import decimal
+        decimal.Decimal('1.44')创建固定精度的浮点数
+    函数：decimal.getcontext().prec = 4 设置精度4
+          with decimal.localcontext() as ctx:
+              ctx.prec = 4 临时设置精度（块语句）
+# 有理分数 
+    创建：from fractions import Fraction
+        Fraction(1, 3)
+        Fraction.from_float(2.5)
+    函数：limit_denominator(10)将分母限制10以内
+# 集合
+    特性： *不可变对象* 的无序集合
+        可迭代，len, for循环, 列表解析
+        无序，不支持索引和分片
+        元素不可变，可为元组，不为列表或字典
+    创建：set('abcd'), set([1, 3, 4]), set(), {1, 2, 3} {}创建空dict
+          frozenset创建不可变集合
+    函数：add/remove加减项目; update按位置求并集
+         & | ^交并差， 对应函数intersection union 
+         issubset子集判断
+# 布尔类型
+    True False
+        
+# 操作符：
+    算术：+ - * / // % ** 
+    逻辑：and, or, not, &&, ||, !
+    (位|集合)运算：& | ^
+    位：<< >> ~
+    比较：> >= < <= == !=
+    三元：x if y else z
+    X == Y > C 等价x == Y and Y > C
+    
+    in包含检测, is测试对象
+    x[i], x[i:j:k]片取
+    属性引用：x.attr
+    
+    元组：(...)
+    列表,列表解析：[...]
+    字典、集合及其解析：{...}
+    
+    yield x生成器函数发送协议
+    lambda args: expression生成匿名函数
+
+# 内置函数：
+    pow幂运算；abs绝对值；round舍入；sum求和；max/min最值;
+    repr（默认的交互回显) str(为任意对象提供打印字符串)
+    '%4.2f, %s' % (num, str)
+    '{0:f}, {1:o}, {2:x}'.format(num, num, num)
+    '*'将元组到单个参数中
+# 模块：
+    # math:
+        pi e 常量
+        sin/cos/tan arcsin/arccos/arctan三角函数
+        floor截余/trunc截整/round舍入
+        sqrt平方根
+    # random:
+        random随机0－1
+        randint(i, j)随机i-j
+        choice(list)随机列表值
+{{{
+    传统除：整数截余反整, 浮点返精确值
+    真  除：返精确值
+    Floor除：截余   (整数返整,浮点返浮点) 截余不是截断
+    floor除不是截断除： *5//-2 = -3* 而不是-2
+    /:2.6为传统除法； 3.0为真除法  //:Floor除法
+}}}

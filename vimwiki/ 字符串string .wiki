@@ -1,0 +1,80 @@
+= 属性 =
+# python中有4个主要类型：
+    数字（整数，浮点，二进制，分数等）
+        支持加法，乘法等
+    序列（字符串，列表，元组）
+        支持索引，分片，合并
+    映射（字典）
+        支持通过键的索引等
+    集合
+    
+    不可变类型（数字，字符串，元组，不可变集合）
+    可变类型（列表，字典，可变集合）
+# 在python中，类型是在运行过程中自动决定的，而不是通过代码声明。
+# 每一个对象都有两个标准的头部信息：一个类型标志符去标识这个对象的类型，以及一个引用计数器，用来决定是不是可以回收这个对象。
+# 对象池。变量是不同时间地点对对象的引用，变量是相同的。对象有类型，变量没有。
+# '==操作符=='测试两个被引用对象是否有相同的值；'is操作符'检查对象的同一性。
+# 共享引用，对象缓存与复用。
+# *import sys;* *sys.getrefcount(x)* 返回对象引用次数。 *sys.argv* 存储命令行参数
+# *import copy;* *copy.copy(x);* 顶层拷贝 *copy.deepcopy(x)* 拷贝嵌套对象结构。
+# 转义：\N{id}Unicode数据库ID；\uhhhh Unicode16位十六进制值； \Uhhhhhhhh Unicode32位十六进制值。\xhh十六进制值， \ooo八进制值。
+# python脚本会自动在windows各unix的路径中使用斜杠表示字符串路径。
+# 类型转换：int('42'), str(42), float('1.24')
+# 合并和replace操作总伴随产生新字符串的成本开销，可list(str) -> ‘’.join(list)将其转为列表（支持原处修改)
+# %[(name)][flags][width][.precision]typecode ->字符码s/r,c,d,i,u,f/F,e/E,x/X,o,g/G; '+'右对齐'-'左对齐'0'补零; width和precision可用'*'替换,意指由输入值下一项取值。name为字典键， *"%(n)d %(x)s" % {"n":1, "x":"spam"}*
+# {fildname!conversionflag:formatspec} -> 
+    conversionflag: r, s, a对repr|str|ascii内置函数一次调用
+    formatspec: [[fill]align][sign][#][0][width][.precision][typecode] ->
+    align: <, >, =, ^左对齐｜右对齐｜标记字符补充｜居中对齐
+# **dict把字典键值包装到单个"name=value"关键字参数
+ 
+= 字符串str =
+    - 有序字符集合。不可变序列。
+    - 表达式操作：合并，分片，索引
+    - 3.0有3种字符串类型：str用于unicode文本，bytes用于二进制数据，bytearray是bytes的一种可变的变体。
+== 操作符 ==
+    - s = ''空字符串,单引号双引号无区别。
+    - s = 's\np\ta\x00m'转义字符串
+    - s = """..."""字符串块
+    - s = r'\temp\spam'raw字符串,关闭转义机制,不能以奇数个反斜杠结束
+    - s = b'spam'字节字符串(3.0存储ASCII值,2.6存储字符)
+    - s = u'spam'(2.6中unicode字符串,3.0默认unicode)
+    - s1 + s2合并     s * 3重复
+    - s[i]索引   s[i:j]分片  s[i:j:k]k为步进 (i:j:k为slice对象，slice(i,j,k)创建
+    - i,j,k可为None    len(s)长度
+    - 'spam' in s成员测试
+    - [ c * 2 for c in s ]列表解析
+    - "a %s parrot" % kind格式化    "a {0:s} parrot".format(kind)
+      '{motto}, {port}, {food}'.format(motto='spam', pork='ham', food='eggs')
+    - for x in s: print(x)迭代
+== 函数 ==
+    - map(ord, s)将ord函数应用于s的每个元素。
+    - ord(s)求ASCII值chr(num)求字符
+== 方法 ==
+# 在python中，表达式和内置函数可能在不同范围的类型有效，方法通常特定于对象类型
+    - s.center(width [,fill]) s.ljust(width [,fill]) s.rjust(width [,fill])
+    - s.upper() s.lower()
+    - s.count(sub [,start [,end]])
+    - s.encode([encoding [,errors]])
+    - s.maketrans(x [,y [,z]])
+    - s.partition(sep) s.rpartition(sep)
+    - s.expandtabs([tabsize])
+    - s.replace(old, new [,count])
+    - s.find(sub [,start [,end]]) s.rfind(sub [,start [,end]])
+    - s.format(fmtstr, *args, **kwargs)
+    - s.index(sub [,start [,end]]) s.rindex(sub [,start [,end]])
+    - s.split([sep [,maxsplit]]) s.rspilt([sep [,maxsplit]])
+    - s.spiltlines([keepends])
+    - s.startswith(prefix [,start [,end]]) s.endswith(suffix [,start [,end]])
+    - s.strip([chars]) s.rstrip([chars]) s.lstrip([chars])
+    - s.swapcase() s.capitalize()  
+    - s.title()
+    - s.translate(map)
+    - s.zfill(width)
+    - s.join(iterable)
+    - s.isalnum() s.isalpha() s.isdecimal() s.indigit() s.isidentifier() 
+     s.islower() s.isnumeric() s.isprintable() s.isspace() s.istitle() i
+     s.issupper()
+
+== 模块 ==
+    re(正则):

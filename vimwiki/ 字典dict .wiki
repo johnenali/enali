@@ -1,0 +1,26 @@
+= 特性features =
+# 通过键而不是偏移量读取
+# 任意对象无序集合
+# 可变长、异构、任意嵌套
+# 可变映射类型
+# 对象引用表（散列表）
+= 操作 =
+# 创建：D={} D={'spam':2,'eggs':3} D={'food':{'ham':1,'egg':2}}嵌套 D=dict.fromkeys(['a','b'] [,val]) D=dict(zip(keylists,valslist)) D=dict([('a',1),('b',2)]) D=dict(name='bob', age=42)键为字符串 D['egg'] D['food']['ham'] 'eggs' in D
+# D.keys() D.values() D.items()2.7返回列表,D.keys().sort()，3.2返回内建类型dict_keys/values/items (迭代器),list(D.keys()).sort()
+# zip:2.7返回元素为元组的列表，3.2返回内建类型zip
+# D.copy()
+# D.get(key,default)为键提供默认值
+# D.update(D2)合并 D.pop(key)删除
+# len(D)
+# D[key]=42
+# del D[key]
+# 3.2 -> D1.keys() & D2.keys()  键唯一，可集合操作 & | ^
+# D={x:x*2 for x in range(10)}字典解析
+= 用法 =
+# 使用字典模拟灵活的列表
+# 字典用于稀疏数据结构
+    - Matrix={}
+    - Matrix[(2,3,4)]=88
+    - Matrix[(7,8,9)]=99
+    - 其余为0
+# 字典接口

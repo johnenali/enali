@@ -1,0 +1,36 @@
+# 函数参数通过引用传递。
+# 值拷贝：List[:]
+# 参数传递规则
+{{{
+    1，位置，从左至右
+    2，关键字参数，name=value
+    3，默认参数，name=default
+    4，可变参数，*传入为元组，**传入为字典
+    5，可变参数解包，*解包序列，**解包字典
+    6，keyword_only，3.0，必须按名称传递
+    }}}
+# 参数使用：函数定义和函数调用
+----
+#定义：
+| func(value)      | 常规，位置匹配     |
+| func(name=value) | 关键字，变量名匹配 |
+| func(*sequence)  | 可变，序列         |
+| func(**dict)     | 可变，字典         |
+----
+# 调用：
+| def func(name)                | 常规，位置匹配 |
+| def func(name=value)          | 默认参数       |
+| def func(*sequence)           | 序列解包       |
+| def func(**dict)              | 字典解包       |
+| def func(*, name=value [,**]) | 仅关键字       |
+----
+# python3.X:跟在*name或单独*之后，任何正式的或默认的参数名称，都是keyword_only参数，且在调用中必须按关键字传递。
+# 调用顺序：位置参数，关键字参数，*sequence, **dict
+# 定义顺序：位置参数，默认值参数，*name, keyword_only参数，**name
+# 调用中*args允许任何可迭代对象，定义中*args把额外参数绑定到元组。
+# 支持任意参数的任意函数
+{{{
+    def tracer(func, *pargs, **kargs):
+        return func(*pargs, **kargs)
+}}}
+# keyword_only参数允许函数既接受任意多个要处理的位置参数，也接受作为关键字参数传递的配置选项。

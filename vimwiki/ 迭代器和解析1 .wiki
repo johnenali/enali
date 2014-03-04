@@ -1,0 +1,78 @@
+# 如果对象是实际保存的序列，或者可以在迭代工具环境中一次产生一个结果的对象，就看做是可迭代的。
+# 迭代工具：for循环，列表解析，in成员测试，map内置函数
+# python迭代协议：有__next__方法的对象会前进到下一个结果，而在一系列的结果的末尾时，则会引发StopIteration。在python中任何这类对象都认为是可迭代的，并可用迭代工具遍历（本质上其内部工作都是在每次迭代中调用__next__，并捕捉StopIteration异常来确定何时离开。
+# 当for循环开始时，会通过迭代协议传给iter内置函数,以便从可迭代对象中获得一个迭代器，返回的对象含有需要的next方法。文件对象是自己的迭代器,列表等则不是。
+{{{
+    L = [1, 2, 3]
+    I = iter(L)
+    I.next()
+    #I有可迭代器，但L没有.
+}}}
+{{{
+    for x in L:
+        print(x**2, end=',')
+   #自动迭代 
+    while True:
+        try:
+            x = next(I)
+        except StopIteration:
+            break
+        print(x**2, end=',')
+    #手动迭代
+}}}
+{{{
+    D={'a':1, 'b':2, 'c':3}
+    for key in D:
+        print(key, D[key])
+    #字典：I=iter(D),next(I)返回下一个键。
+}}}
+# 读取文本文件的最佳方式就是根本不要去读取。
+{{{
+    for line in open('script.py'):
+        print(line.upper(), end=',')
+    #open()会创建文件迭代器，for为迭代工具。
+    #readlines()方法会加载文件到内存，做成行字符串列表，再每次返回一行。
+    #readline()方法返回下一行
+}}}
+# 迭代器,列表解析在python中是以C语言的速度运行。
+# next:内置函数，自动调用对象的__next__方法。
+# 当我们开始考虑在一个序列中的每项上执行一个操作时，都可以考虑使用列表解析。
+{{{
+    lines = [line.rstrip() for line in open('script.py') if line[0] == 'p']
+    #添加if过滤子句
+    #列表解析的语法允许任意数目的for子句，每个子句有一个可选的相关的if子句。
+    [x+y for x in 'abc' for y in 'lmn']
+    map(str.upper, open('script.py')
+    #map将函数应用于可迭代对象，列表解析则为任意表达式
+}}}
+# 实现了迭代协议的任何工具，都能够在提供了该工具的任何内置类型或用户定义的类上自动工作
+{{{
+    #sorted:排序可迭代对象中的各项
+    #zip:组合可迭代对象中的各项
+    #enumerate:根据相对位置来配对可迭代对象中的项
+    #filter:选择一个函数为真的项
+    #reduce:针对可迭代对象中的成对的项运行一个函数
+    #map:针对可迭代对象的每项应用一个函数
+    #3.0：除sorted返回真正的列表外，其余均返回可迭代对象
+    #字典方法：keys,values,items返回可迭代对象（3.0），而不是列表（2.6）
+    
+    #sum, any/all, max/min
+}}}
+{{{
+    #列表解析：[line for line in open('...')]
+#集合解析：{line for line in open('...')}
+   }}}
+#range:支持len和索引，支持在其结果上的多个迭代器，而map,zip等则支持单个的活跃迭代器。
+{{{
+    R=range(10)
+    I1=iter(R)
+    I2=iter(R)
+    next(I1) ->0
+    next(I2) ->0
+
+    M=map(abs,(-1,0,1))
+    I1=iter(M)
+    I2=iter(M)
+    next(I1) ->1
+    next(I2) ->0
+}}}
